@@ -377,7 +377,7 @@ func (this *Logger) Crit(content ...interface{}) {
 }
 
 func (this *Logger) Critf(format string, content ...interface{}) {
-	this.printf(criticalFlag, format, content)
+	this.printf(criticalFlag, format, content...)
 }
 
 func Println(content ...interface{}) {
