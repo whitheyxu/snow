@@ -5,9 +5,10 @@ import (
 	"io"
 	"net/http"
 	"os"
-	"snow/g/logs"
-	"snow/router"
 	"time"
+
+	"github.com/whitheyxu/snow/g/logs"
+	"github.com/whitheyxu/snow/router"
 )
 
 type SnowApplication struct {

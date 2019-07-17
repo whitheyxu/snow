@@ -2,9 +2,9 @@
 package snow
 
 import (
-	"snow/context"
-	"snow/controller"
-	"snow/router"
+	"github.com/whitheyxu/snow/context"
+	"github.com/whitheyxu/snow/controller"
+	"github.com/whitheyxu/snow/router"
 )
 
 func Route(path string, controller controller.ControllerInterface) (leavesSlice []*router.Leaves) {

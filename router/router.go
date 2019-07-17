@@ -5,11 +5,12 @@ import (
 	"net/http"
 	"reflect"
 	"runtime"
-	"snow/context"
-	"snow/controller"
-	"snow/g/logs"
 	"strings"
 	"sync"
+
+	"github.com/whitheyxu/snow/context"
+	"github.com/whitheyxu/snow/controller"
+	"github.com/whitheyxu/snow/g/logs"
 )
 
 type Router struct {

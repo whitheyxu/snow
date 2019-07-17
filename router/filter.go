@@ -2,7 +2,7 @@
 package router
 
 import (
-	"snow/context"
+	"github.com/whitheyxu/snow/context"
 )
 
 type filterInterface interface {

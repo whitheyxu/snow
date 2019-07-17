@@ -2,7 +2,7 @@
 package filter
 
 import (
-	"snow/context"
+	"github.com/whitheyxu/snow/context"
 )
 
 type FilterInterface interface {

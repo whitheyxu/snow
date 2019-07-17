@@ -6,9 +6,10 @@ import (
 	"io"
 	"mime/multipart"
 	"os"
-	"snow/context"
-	"snow/g"
 	"strings"
+
+	"github.com/whitheyxu/snow/context"
+	"github.com/whitheyxu/snow/g"
 )
 
 const (

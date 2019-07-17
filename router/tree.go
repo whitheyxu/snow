@@ -2,9 +2,10 @@
 package router
 
 import (
-	"snow/context"
-	"snow/g/logs"
 	"strings"
+
+	"github.com/whitheyxu/snow/context"
+	"github.com/whitheyxu/snow/g/logs"
 )
 
 type sortableInterface interface {

@@ -1,1 +1,1 @@
-module snow
+module github.com/whitheyxu/snow
