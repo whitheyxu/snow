@@ -279,33 +279,33 @@ func (this *Controller) SaveToFile(file multipart.File, dstFileName string, dstF
 
 // implement controllerInterface
 func (this *Controller) Get() {
-	this.Ctx.Response.Writer.WriteHeader(405)
+	this.Ctx.Response.WriteHeader(405)
 	return
 }
 func (this *Controller) Post() {
-	this.Ctx.Response.Writer.WriteHeader(405)
+	this.Ctx.Response.WriteHeader(405)
 	return
 }
 func (this *Controller) Put() {
-	this.Ctx.Response.Writer.WriteHeader(405)
+	this.Ctx.Response.WriteHeader(405)
 	return
 }
 func (this *Controller) Delete() {
-	this.Ctx.Response.Writer.WriteHeader(405)
+	this.Ctx.Response.WriteHeader(405)
 	return
 }
 func (this *Controller) Options() {
-	this.Ctx.Response.Writer.WriteHeader(405)
+	this.Ctx.Response.WriteHeader(405)
 	return
 }
 
 func (this *Controller) Patch() {
-	this.Ctx.Response.Writer.WriteHeader(405)
+	this.Ctx.Response.WriteHeader(405)
 	return
 }
 
 func (this *Controller) Head() {
-	this.Ctx.Response.Writer.WriteHeader(405)
+	this.Ctx.Response.WriteHeader(405)
 	return
 }
 

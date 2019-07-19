@@ -20,6 +20,7 @@ type Context struct {
 
 type Response struct {
 	Writer    http.ResponseWriter
+	Code      int
 	IsWritten bool
 }
 
@@ -44,6 +45,14 @@ func (this *Context) Init(w http.ResponseWriter, r *http.Request) {
 
 func NewContext() *Context {
 	return new(Context)
+}
+
+func (this *Response) WriteHeader(code int) {
+	if this.Code > 0 {
+		return
+	}
+	this.Code = code
+	this.WriteHeader(code)
 }
 
 func (this *Response) Response(resp []byte) {

@@ -7,6 +7,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/whitheyxu/snow/config"
 	"github.com/whitheyxu/snow/g/logs"
 	"github.com/whitheyxu/snow/router"
 )
@@ -14,14 +15,15 @@ import (
 type SnowApplication struct {
 	Server        *http.Server
 	DefaultLogger io.Writer
+	Config        *config.Config
 }
 
-type ServerConfig struct {
-	Addr           string
-	ReadTimeout    time.Duration
-	WriteTimeout   time.Duration
-	MaxHeaderBytes int
-}
+//type ServerConfig struct {
+//	Addr           string
+//	ReadTimeout    time.Duration
+//	WriteTimeout   time.Duration
+//	MaxHeaderBytes int
+//}
 
 var defaultServer = &http.Server{
 	Addr:           ":8080",
@@ -70,4 +72,9 @@ func SetServerWriteTimeout(duration int) {
 
 func SetServerMaxHeaderBytes(maxBytes int) {
 	snowApplication.Server.MaxHeaderBytes = maxBytes
+}
+
+func SetIsDebugAccess(isDebugAccess bool) {
+	config.SetIsDebugAccess(isDebugAccess)
+	return
 }

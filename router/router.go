@@ -8,7 +8,9 @@ import (
 	"runtime"
 	"strings"
 	"sync"
+	"time"
 
+	"github.com/whitheyxu/snow/config"
 	"github.com/whitheyxu/snow/context"
 	"github.com/whitheyxu/snow/controller"
 	"github.com/whitheyxu/snow/g/logs"
@@ -166,11 +168,30 @@ func serveFilePre(ctx *context.Context) {
 }
 
 func handleNotFound(ctx *context.Context) {
-	ctx.Response.Writer.WriteHeader(404)
+	ctx.Response.WriteHeader(404)
 	return
 }
 
+func handleDebugAccess(start time.Time, ctx *context.Context) {
+	if config.Cfg.IsDebugAccess {
+		duration := time.Since(start)
+		remoteAddr := ctx.Request.RemoteAddr
+		url := ctx.Request.URL.String()
+		method := ctx.Request.Method
+		code := ctx.Response.Code
+		if code == 0 {
+			code = 200
+		}
+		logs.Infof("[%s] [%s] [%s] [%s] [%d]\n", remoteAddr, method, url, duration, code)
+	}
+
+	return
+
+}
+
 func (this *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+
+	start := time.Now()
 
 	ctx := this.Pool.Get().(*context.Context)
 	ctx.Init(w, r)
@@ -178,16 +199,19 @@ func (this *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 	serveFilePre(ctx)
 	if ctx.Response.IsWritten {
+		handleDebugAccess(start, ctx)
 		return
 	}
 
 	leaves := this.Tree.root.GetLeavesByPath(r.URL.Path, ctx)
 	if leaves == nil {
 		handleNotFound(ctx)
+		handleDebugAccess(start, ctx)
 		return
 	}
 	if leaves.controllerRunObjects == nil {
 		handleNotFound(ctx)
+		handleDebugAccess(start, ctx)
 		return
 	}
 
@@ -212,8 +236,10 @@ func (this *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			c.Options()
 		}
 
+		handleDebugAccess(start, ctx)
 		return
 	}
 	handleNotFound(ctx)
+	handleDebugAccess(start, ctx)
 	return
 }
