@@ -139,6 +139,9 @@ func getWildcardValue(path string) (value string) {
 
 func (this *Leaves) execFilter(ctx *context.Context) {
 	for i := 0; i < len(this.filterRunObjects); i++ {
+		if ctx.Response.IsWritten {
+			return
+		}
 		this.filterRunObjects[i].filter(ctx)
 	}
 	return

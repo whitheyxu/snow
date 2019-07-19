@@ -279,39 +279,48 @@ func (this *Controller) SaveToFile(file multipart.File, dstFileName string, dstF
 
 // implement controllerInterface
 func (this *Controller) Get() {
-	this.Ctx.ResponseWriter.WriteHeader(405)
+	this.Ctx.Response.Writer.WriteHeader(405)
 	return
 }
 func (this *Controller) Post() {
-	this.Ctx.ResponseWriter.WriteHeader(405)
+	this.Ctx.Response.Writer.WriteHeader(405)
 	return
 }
 func (this *Controller) Put() {
-	this.Ctx.ResponseWriter.WriteHeader(405)
+	this.Ctx.Response.Writer.WriteHeader(405)
 	return
 }
 func (this *Controller) Delete() {
-	this.Ctx.ResponseWriter.WriteHeader(405)
+	this.Ctx.Response.Writer.WriteHeader(405)
 	return
 }
 func (this *Controller) Options() {
-	this.Ctx.ResponseWriter.WriteHeader(405)
+	this.Ctx.Response.Writer.WriteHeader(405)
 	return
 }
 
 func (this *Controller) Patch() {
-	this.Ctx.ResponseWriter.WriteHeader(405)
+	this.Ctx.Response.Writer.WriteHeader(405)
 	return
 }
 
 func (this *Controller) Head() {
-	this.Ctx.ResponseWriter.WriteHeader(405)
+	this.Ctx.Response.Writer.WriteHeader(405)
 	return
 }
 
 func (this *Controller) Response(resp []byte) {
-	this.Ctx.ResponseWriter.Write(resp)
+	this.Ctx.Response.Response(resp)
 	return
+}
+
+func (this *Controller) ResponseJson(v interface{}) {
+	this.Ctx.Response.ResponseJson(v)
+	return
+}
+
+func (this *Controller) Abort(code int) {
+	this.Ctx.Response.Abort(code)
 }
 
 func (this *Controller) Init(context *context.Context) {

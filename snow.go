@@ -44,6 +44,7 @@ func Run() {
 	err := snowApplication.Server.ListenAndServe()
 
 	if err != nil {
+		//		fmt.Println(err)
 		logs.Crit(err)
 	}
 }

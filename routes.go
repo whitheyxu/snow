@@ -22,6 +22,11 @@ func RegisterFilter(path string, priority int, filterFunc func(*context.Context)
 	return
 }
 
+func RouteStatic(path string, dir string) {
+	router.RouteStatic(path, dir)
+	return
+}
+
 func NewRouter(leavesSlices ...[]*router.Leaves) *router.Router {
 	return router.NewRouter(leavesSlices...)
 }
